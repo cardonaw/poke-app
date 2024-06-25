@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { PrimeNGConfig } from 'primeng/api';
+
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'poke-app';
+
+  constructor(private primengConfig: PrimeNGConfig) {}
+
+  ngOnInit() {
+      this.primengConfig.ripple = true;
+  }
 }
