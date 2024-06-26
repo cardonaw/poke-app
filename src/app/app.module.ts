@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SharedModule } from './shared/shared.module';
 import { PrimeNgModule } from './prime-ng/prime-ng.module';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,10 @@ import { PrimeNgModule } from './prime-ng/prime-ng.module';
     SharedModule,
     PrimeNgModule
   ],
-  providers: [],
+  providers: [
+    provideHttpClient()
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

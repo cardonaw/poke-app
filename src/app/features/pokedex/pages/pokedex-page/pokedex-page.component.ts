@@ -1,5 +1,7 @@
-import { CommonModule } from '@angular/common';
-import { Component, type OnInit } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
+import { PokemonService } from '../../../../core/services/pokemon.service';
+import { PokemonsListResult } from '../../../../core/interfaces/pokemons-list.interface';
 
 @Component({
   selector: 'pokedex-pokedex-page',
@@ -8,6 +10,30 @@ import { Component, type OnInit } from '@angular/core';
 })
 export class PokedexPageComponent implements OnInit {
 
-  ngOnInit(): void { }
+  public pokemons: PokemonsListResult[] = [];
+
+  constructor(private pokemonService: PokemonService) { }
+
+  ngOnInit(): void {
+
+    this.getPokemons()
+
+  }
+
+  public getPokemons() {
+
+    this.pokemonService.getPokemonsList()
+      .subscribe(resp => {
+
+        console.log(resp)
+
+        this.pokemons = resp.results;
+
+        console.log('pokemons:', this.pokemons)
+
+      });
+    // console.log('click')
+
+  }
 
 }

@@ -5,7 +5,8 @@
         "pokemons",
         "Pokemons",
         "primeflex",
-        "primeng"
+        "primeng",
+        "titlecase"
     ],
     "cSpell.language": "en,es-ES"
 }

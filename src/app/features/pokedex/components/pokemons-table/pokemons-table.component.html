@@ -1,1 +1,66 @@
-<p>pokemons-table works!</p>
+<!-- <h4 *ngFor="let pokemon of pokemons; let i = index"> <span> {{ i + 1}} </span> {{ pokemon.name }} </h4> -->
+
+
+<!-- <div class="mb-3">
+  <p-button
+      type="button"
+      icon="pi pi-chevron-left"
+      (click)="prev()"
+      [disabled]="isFirstPage()"
+      styleClass="p-button-text" />
+  <p-button
+      type="button"
+      icon="pi pi-refresh"
+      (click)="reset()"
+      styleClass="p-button-text" />
+  <p-button
+      type="button"
+      icon="pi pi-chevron-right"
+      (click)="next()"
+      [disabled]="isLastPage()"
+      styleClass="p-button-text" />
+</div> -->
+
+<div class="card">
+  <p-table
+      [value]="pokemons"
+      [responsive]="true"
+      [loading]="false"
+      loadingIcon="pi pi-spinner pi-spin text-7xl"
+      [paginator]="true"
+      paginatorPosition="both"
+      [rows]="10"
+      [first]="first"
+      [showCurrentPageReport]="true"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      currentPageReportTemplate="Mostrando Pokemons del {first} al {last} de {totalRecords}"
+      (onPage)="pageChange($event)"
+      [rowsPerPageOptions]="[10, 15, 20]"
+      (rowsChange)="rowsChange($event)"
+  >
+      <ng-template pTemplate="header">
+          <tr>
+              <th class="text-center" style="width:20%">GIF</th>
+              <th class="text-center" style="width:25%">Nombre</th>
+              <th class="text-center" style="width:25%">Categoría</th>
+              <th class="text-center" style="width:10%"></th>
+              <th class="text-center" style="width:20%">Detalles</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-pokemons>
+          <tr>
+              <td class="text-center" > GIF </td>
+              <td class="text-center" >{{ pokemons.name | titlecase }}</td>
+              <td class="text-center" >{{ pokemons.url | titlecase }}</td>
+              <td class="text-center" > </td>
+              <td class="text-center" > <p-button label="Ver más" size="small" ></p-button> </td>
+          </tr>
+      </ng-template>
+      <!-- <ng-template pTemplate="paginatorleft">
+          <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" />
+      </ng-template>
+      <ng-template pTemplate="paginatorright">
+          <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text" />
+      </ng-template> -->
+  </p-table>
+</div>
