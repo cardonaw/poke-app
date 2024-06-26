@@ -8,6 +8,14 @@ const routes: Routes = [
     path: 'home',
     component: HomePageComponent,
   },
+  {
+    path: 'pokedex',
+    loadChildren: () => import('./features/pokedex/pokedex.module').then( m => m.PokedexModule )
+  },
+  {
+    path: 'game',
+    loadChildren: () => import('./features/game/game.module').then( m => m.GameModule )
+  },
   // {
   //   path: 'by/:id',
   //   component: '',

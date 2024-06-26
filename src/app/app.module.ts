@@ -3,18 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ButtonModule } from 'primeng/button';
-import { PokemonsModule } from './pokemons/pokemons.module';
+
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { SharedModule } from './shared/shared.module';
+import { PrimeNgModule } from './prime-ng/prime-ng.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PokemonsModule,
-    ButtonModule
+    SharedModule,
+    PrimeNgModule
   ],
   providers: [],
   bootstrap: [AppComponent]
