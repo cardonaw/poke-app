@@ -1,6 +1,7 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input, type OnInit } from '@angular/core';
-import { PokemonsListResult } from '../../../../core/interfaces/pokemons-list.interface';
+import { Component, EventEmitter, Input, Output, type OnInit } from '@angular/core';
+import { PokemonsList, PokemonsListResult } from '../../../../core/interfaces/pokemons-list.interface';
+import { Subject, Subscription, debounceTime } from 'rxjs';
+import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
 
 @Component({
   selector: 'pokedex-pokemons-table',
@@ -9,51 +10,95 @@ import { PokemonsListResult } from '../../../../core/interfaces/pokemons-list.in
 })
 export class PokemonsTableComponent implements OnInit {
 
-  public first: number = 0;
+  public offset: number = 0;
 
-  public rows: number = 10;
+  public rows: number = 5;
+
+  public flag: boolean = false;
+
+  public paginatorPosition: 'top' | 'bottom' | 'both' = 'bottom';
 
 
   @Input()
-  public pokemons: PokemonsListResult[] = [];
+  public isLoading: boolean = false;
+
+  @Input()
+  public firstLoadingFlag: boolean = false;
+
+  @Input()
+  public pokemonsArray: Pokemon[] = [];
 
 
-  ngOnInit(): void { }
-
-
-  next() {
-
-    if (this.isLastPage()) return;
-
-    this.first = this.first + this.rows;
+  @Input()
+  public pokemonsList: PokemonsList = {
+    count: 0,
+    next: '',
+    previous: '',
+    results: []
   }
 
-  prev() {
+  @Output()
+  public onPageChange = new EventEmitter<{ first: number; rows: number; }>();
 
-    if (this.isFirstPage()) return;
+  @Output()
+  public infoRequest = new EventEmitter<number>();
 
-    this.first = this.first - this.rows;
-  }
 
-  reset() {
-    this.first = 0;
-  }
+
+
+  ngOnInit( ): void {}
+
 
   pageChange(event: { first: number; rows: number; }) {
-    this.first = event.first;
+
+    this.paginatorPositionControl(event.rows);
+
+    this.offset = event.first;
     this.rows = event.rows;
+
+    this.onPageChange.emit( event );
+
+    // console.log('firstchange', event.rows);
+    // console.log('rowchange', event.first);
   }
 
-  rowsChange( event:number ) {
-    console.log(event);
+  paginatorPositionControl(rows: number) {
+    rows >= 10 ? this.paginatorPosition = 'both' : this.paginatorPosition = 'bottom';
   }
 
-  isLastPage(): boolean {
-    return this.pokemons ? this.first === (this.pokemons.length - this.rows) : true;
+  onClickInfo( id: number ) {
+    this.infoRequest.emit( id )
   }
 
-  isFirstPage(): boolean {
-    return this.pokemons ? this.first === 0 : true;
-  }
+
+
+
+  // next() {
+
+  //   if (this.isLastPage()) return;
+
+  //   this.first = this.first + this.rows;
+  // }
+
+  // prev() {
+
+  //   if (this.isFirstPage()) return;
+
+  //   this.first = this.first - this.rows;
+  // }
+
+  // reset() {
+  //   this.first = 0;
+  // }
+
+
+
+  // isLastPage(): boolean {
+  //   return this.pokemonsList?.results ? this.first === (this.pokemonsList.count - this.rows) : true;
+  // }
+
+  // isFirstPage(): boolean {
+  //   return this.pokemonsList?.results ? this.first === 0 : true;
+  // }
 
 }

@@ -8,6 +8,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SharedModule } from './shared/shared.module';
 import { PrimeNgModule } from './prime-ng/prime-ng.module';
 import { provideHttpClient } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { provideHttpClient } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
     PrimeNgModule

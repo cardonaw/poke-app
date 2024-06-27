@@ -6,18 +6,22 @@ import { PokedexPageComponent } from './pages/pokedex-page/pokedex-page.componen
 import { PokemonsTableComponent } from './components/pokemons-table/pokemons-table.component';
 import { PrimeNgModule } from '../../prime-ng/prime-ng.module';
 import { TableSettingsComponent } from './components/table-settings/table-settings.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     PokedexPageComponent,
     PokemonsTableComponent,
-    TableSettingsComponent
+    TableSettingsComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
     PokedexRoutingModule,
-    PrimeNgModule
+    PrimeNgModule,
+    FormsModule
   ]
 })
 export class PokedexModule { }

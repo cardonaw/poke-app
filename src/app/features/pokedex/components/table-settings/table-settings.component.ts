@@ -3,7 +3,7 @@ import { Component, type OnInit } from '@angular/core';
 
 @Component({
   selector: 'pokedex-table-settings',
-  template: `<p>table-settings works!</p>`,
+  templateUrl: './table-settings.component.html',
   styles: ``,
 })
 export class TableSettingsComponent implements OnInit {
