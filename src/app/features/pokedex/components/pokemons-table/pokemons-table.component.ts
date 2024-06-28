@@ -41,7 +41,7 @@ export class PokemonsTableComponent implements OnInit {
   public onPageChange = new EventEmitter<{ first: number; rows: number; }>();
 
   @Output()
-  public infoRequest = new EventEmitter<number>();
+  public showDialog = new EventEmitter<number>();
 
 
 
@@ -67,7 +67,7 @@ export class PokemonsTableComponent implements OnInit {
   }
 
   onClickInfo( id: number ) {
-    this.infoRequest.emit( id )
+    this.showDialog.emit( id )
   }
 
 

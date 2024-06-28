@@ -26,6 +26,29 @@ export class PokedexPageComponent implements OnInit {
     results: []
   }
 
+  public pokemonInfo!: Pokemon;
+
+  public visibleModal: boolean = false;
+  public visibleModalAnimDelay: boolean = false;
+
+
+  showDialog( id: number ) {
+    this.pokemonsArray.forEach(pokemon => {
+      if( pokemon.id === id ) {
+        this.pokemonInfo = pokemon;
+      }
+    });
+    this.visibleModal = true;
+    this.visibleModalAnimDelay = true;
+  }
+
+  hideDialog() {
+    this.visibleModal = false;
+    setTimeout(() => {
+      this.visibleModalAnimDelay = false;
+    }, 200);
+  }
+
 
 
   constructor(private pokemonService: PokemonService) { }

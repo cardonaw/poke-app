@@ -27,10 +27,17 @@
     [pokemonsList]="pokemonsList"
     [pokemonsArray]="pokemonsArray"
     (onPageChange)="onTablePageChange($event)"
+    (showDialog)="showDialog($event)"
     >
   </pokedex-pokemons-table>
 
   </div>
 </div>
 
-<pokedex-modal></pokedex-modal>
+<pokedex-modal
+*ngIf="visibleModalAnimDelay"
+[visibleModal]="visibleModal"
+[pokemonInfo]="pokemonInfo"
+(hideModal)="hideDialog()"
+>
+</pokedex-modal>

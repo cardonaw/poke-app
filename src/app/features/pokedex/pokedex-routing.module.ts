@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PokedexPageComponent } from './pages/pokedex-page/pokedex-page.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
   // },
   // {
   //   path: 'by/:id',
-  //   component: '',
+  //   component: ModalComponent,
   // },
   {
     path: '**',
