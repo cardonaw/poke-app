@@ -25,7 +25,7 @@
   <p-table
       [value]="pokemonsArray"
       [totalRecords]="pokemonsList.count"
-      [loading]="false"
+      [loading]="isLoading"
       loadingIcon="pi pi-spinner pi-spin text-7xl"
       [paginator]="true"
       [paginatorPosition]="paginatorPosition"
@@ -41,11 +41,11 @@
   >
       <ng-template pTemplate="header">
         <tr   >
-          <th class="text-center" style="width:20%">GIF</th>
-          <th class="text-center" style="width:25%">Nombre</th>
-          <th class="text-center" style="width:30%">Categoría</th>
-          <th class="text-center" style="width:10%"></th>
-          <th class="text-center" style="width:15%">Detalles</th>
+          <th class="text-center text-lg" style="width:20%">GIF</th>
+          <th class="text-center text-lg" style="width:25%">Nombre</th>
+          <th class="text-center text-lg" style="width:30%">Categoría</th>
+          <th class="text-center text-lg" style="width:10%"></th>
+          <th class="text-center text-lg" style="width:15%">Detalles</th>
         </tr>
       </ng-template>
 
@@ -56,11 +56,11 @@
           <!-- GIF or PNG -->
           <td class="text-center">
             <img *ngIf="pokemon.sprites.other.showdown.front_default" [src]="pokemon.sprites.other.showdown.front_default" [alt]="pokemon.name">
-            <img *ngIf="!pokemon.sprites.other.showdown.front_default" [src]="pokemon.sprites.front_default" [alt]="pokemon.name">
+            <img *ngIf="!pokemon.sprites.other.showdown.front_default" [src]="pokemon.sprites.front_default" alt="No Disponible">
           </td>
 
           <!-- Name -->
-          <td class="text-center text-primary font-bold">{{ pokemon.name | titlecase }}</td>
+          <td class="text-center text-primary font-bold text-xl">{{ pokemon.name | titlecase }}</td>
 
           <!-- Category -->
           <td class="text-center">

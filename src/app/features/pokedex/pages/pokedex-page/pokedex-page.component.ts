@@ -1,7 +1,11 @@
+import { TypeService } from '../../../../services/type.service';
 
 import { Component, OnInit } from '@angular/core';
-import { PokemonService } from '../../../../core/services/pokemon.service';
-import { PokemonsList, PokemonsListResult } from '../../../../core/interfaces/pokemons-list.interface';
+import { PokemonService } from '../../../../services/pokedex.service';
+import {
+  PokemonsList,
+  PokemonsListResult,
+} from '../../../../core/interfaces/pokemons-list.interface';
 import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
 
 @Component({
@@ -10,7 +14,6 @@ import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
   styleUrl: './pokedex-page.component.css',
 })
 export class PokedexPageComponent implements OnInit {
-
   public offset: number = 0;
   public limit: number = 5;
 
@@ -23,18 +26,31 @@ export class PokedexPageComponent implements OnInit {
     count: 0,
     next: '',
     previous: '',
-    results: []
-  }
+    results: [],
+  };
 
   public pokemonInfo!: Pokemon;
 
   public visibleModal: boolean = false;
   public visibleModalAnimDelay: boolean = false;
 
+  constructor(
+    private pokemonService: PokemonService,
+    private typeService: TypeService
+  ) {}
 
-  showDialog( id: number ) {
-    this.pokemonsArray.forEach(pokemon => {
-      if( pokemon.id === id ) {
+  ngOnInit(): void {
+    this.getPokemons(this.offset, this.limit);
+
+    //Probando el endpoint by id
+    // this.pokemonService.getPokemonById(1).subscribe(resp => {
+    //   console.log('pokemon by id: ', resp)
+    // });
+  }
+
+  public showDialog(id: number) {
+    this.pokemonsArray.forEach((pokemon) => {
+      if (pokemon.id === id) {
         this.pokemonInfo = pokemon;
       }
     });
@@ -42,70 +58,91 @@ export class PokedexPageComponent implements OnInit {
     this.visibleModalAnimDelay = true;
   }
 
-  hideDialog() {
+  public hideDialog() {
     this.visibleModal = false;
     setTimeout(() => {
       this.visibleModalAnimDelay = false;
     }, 200);
   }
 
-
-
-  constructor(private pokemonService: PokemonService) { }
-
-  ngOnInit(): void {
-
-    this.getPokemons(this.offset, this.limit)
-
-    //Probando el endpoint by id
-    // this.pokemonService.getPokemonById(1).subscribe(resp => {
-    //   console.log('pokemon by id: ', resp)
-    // });
-
-  }
-
-  public onTablePageChange(event: { first: number; rows: number; }) {
+  public onTablePageChange(event: { first: number; rows: number }) {
     this.offset = event.first;
     this.limit = event.rows;
     this.getPokemons(this.offset, this.limit);
   }
 
   public getPokemons(offset: number, limit: number) {
-
     // debugger
 
     this.pokemonsArray = [];
 
     this.isLoading = true;
 
-    this.pokemonService.getPokemonsList(offset, limit)
-      .subscribe(resp => {
+    /*
+      //Antes del contructor
+      const destroy$ = new Subject<boolean>()
 
-        this.pokemonsList = resp;
+      //ngOnInit
+      this.getAllPokemon().pipe(takeUntil(destroy$)).suscribe()
+      .
+      .
+      .
+      .
+      .
+      .
+      .
 
-        this.isLoading = false;
+      //ngOnDestroy
+      destroy$.next(true)
+      destroy$.unsubscribe()
 
-        if (!this.firstLoadingFlag) { this.firstLoadingFlag = true }
 
 
-        resp.results.forEach((result) => {
-          this.pokemonService.getPokemonById(result.name)
-            .subscribe(pokemonInfo => {
+      //Idea de servicio
+      servicioType{
+      return
+      this.get(AllPokemon)
+      .pipe(
+      map(
+      () => {}
+      ),
+      )
+      }
+      */
 
-              this.pokemonsArray.push(pokemonInfo);
+    this.pokemonService.getPokemonsList(offset, limit).subscribe((resp) => {
+      this.pokemonsList = resp;
 
-            })
-        })
+      this.isLoading = false;
 
-        console.log('pokemons on pokedex table:', this.pokemonsList)
+      if (!this.firstLoadingFlag) {
+        this.firstLoadingFlag = true;
+      }
 
+      resp.results.forEach((result) => {
+        this.pokemonService
+          .getPokemonById(result.name)
+          .subscribe((pokemonInfo) => {
+            this.pokemonsArray.push(pokemonInfo);
+          });
       });
 
-    console.log('Arreglo de pokemons en pokedex: ', this.pokemonsArray)
+      console.log('pokemons on pokedex table:', this.pokemonsList);
+    });
+
+    console.log('Arreglo de pokemons en pokedex: ', this.pokemonsArray);
     // this.pokemonsArray.forEach(pokemon => {
     //   console.log('pokemon: ', pokemon.name);
     // });
-
   }
 
+  onTypeChange(type: { name: string; url: string }): void {
+    this.getPokemonsByType(type.name);
+  }
+
+  public getPokemonsByType(typeName: string): void {
+    this.typeService.getTypeById(typeName).subscribe((resp) => {
+      // this.pokemonsList.results = resp.pokemon
+    });
+  }
 }

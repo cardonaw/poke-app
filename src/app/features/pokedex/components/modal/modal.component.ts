@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, Output, type OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  type OnInit,
+} from '@angular/core';
 import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
 
 @Component({
@@ -7,7 +15,6 @@ import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
   styles: ``,
 })
 export class ModalComponent implements OnInit {
-
   public imgUrl: string = '';
   public soundUrl: string = '';
 
@@ -22,23 +29,19 @@ export class ModalComponent implements OnInit {
   @Output()
   public hideModal = new EventEmitter<void>();
 
+  @ViewChild('cries')
+  public cries!: ElementRef<HTMLAudioElement>;
 
   ngOnInit(): void {
-
     this.setSprite();
-
   }
 
-  setSprite():void {
-
-    this.pokemonInfo.sprites.other['official-artwork'].front_default ?
-
-    this.imgUrl = this.pokemonInfo.sprites.other['official-artwork'].front_default :
-
-    this.imgUrl = this.pokemonInfo.sprites.front_default
-
+  setSprite(): void {
+    this.pokemonInfo.sprites.other['official-artwork'].front_default
+      ? (this.imgUrl =
+          this.pokemonInfo.sprites.other['official-artwork'].front_default)
+      : (this.imgUrl = this.pokemonInfo.sprites.front_default);
   }
-
 
   setVisibleFalse() {
     this.hideModal.emit();
@@ -46,7 +49,11 @@ export class ModalComponent implements OnInit {
 
   onLoadImg() {
     this.imgLoaded = true;
-    console.log('img loaded')
+    // console.log('img loaded')
   }
 
+  cry() {
+    this.cries.nativeElement.volume = 0.3;
+    this.cries.nativeElement.play();
+  }
 }

@@ -1,12 +1,15 @@
-<p-dialog [header]="pokemonInfo.name | titlecase" [modal]="true" [visible]="visibleModal"
-  [style]="{ width: 'auto', margin: '0 2rem' }" [closable]="false" [focusOnShow]="false" [draggable]="false"
-  (onShow)="cries.play()">
-
+<p-dialog
+  [header]="pokemonInfo.name | titlecase"
+  [modal]="true"
+  [visible]="visibleModal"
+  [style]="{ width: 'auto', margin: '0 2rem' }"
+  [closable]="false"
+  [focusOnShow]="false"
+  [draggable]="false"
+>
   <!-- HEADER -->
   <ng-template pTemplate="header">
-
     <div class="flex align-items-center justify-content-center gap-2">
-
       <!-- NAME -->
       <div class="text-3xl md:text-5xl font-bold mr-5">
         {{ pokemonInfo.name | titlecase }}
@@ -14,44 +17,43 @@
 
       <!-- CATEGORIES -->
       <div class="flex align-items-end flex-grow-1">
-
-        <div *ngFor="let type of pokemonInfo.types"
-          class="text-md md:text-xl mx-2 mt-2 px-2 py-1 surface-100 border-round-xl">
+        <div
+          *ngFor="let type of pokemonInfo.types"
+          class="text-md md:text-xl mx-2 mt-2 px-2 py-1 surface-100 border-round-xl"
+        >
           {{ type.type.name | titlecase }}
         </div>
-
       </div>
-
     </div>
   </ng-template>
 
   <!-- BODY -->
   <div class="flex flex-row justify-content-center flex-wrap gap-5">
-
     <!-- LEFT SIDE -->
     <div
-      class="flex flex-column align-items-center justify-content-center w-15rem sm:w-20rem md:w-21rem lg:w-25rem">
-
+      class="flex flex-column align-items-center justify-content-center w-15rem sm:w-20rem md:w-21rem lg:w-25rem"
+    >
       <!-- SPRITE -->
       <img
-      class="w-full"
-      [hidden]="!imgLoaded"
-      [src]="imgUrl"
-      [alt]="pokemonInfo.name"
-      (load)="onLoadImg()" >
+        class="w-full"
+        [hidden]="!imgLoaded"
+        [src]="imgUrl"
+        [alt]="pokemonInfo.name"
+        (load)="onLoadImg()"
+      />
 
       <!-- SKELETON IMG -->
       <p-skeleton *ngIf="!imgLoaded" width="20rem" height="20rem" />
 
-
       <!-- LEFT FOOTER -->
-      <div class=" flex flex-row gap-5 mt-3">
-
+      <div class="flex flex-row gap-5 mt-3">
         <!-- EXPERIENCE -->
-        <div class="flex align-items-center text-md p-text-secondary font-bold block gap-2">
+        <div
+          class="flex align-items-center text-md p-text-secondary font-bold block gap-2"
+        >
           Experiencia Base:
 
-          <span class=" text-6w00 text-lg">
+          <span class="text-600 text-lg">
             {{ pokemonInfo.base_experience }}
           </span>
         </div>
@@ -59,7 +61,7 @@
         <!-- AUDIO -->
         <div class="flex align-items-center justify-content-end gap-3">
           <audio #cries>
-            <source [src]="pokemonInfo.cries.latest" type="audio/ogg">
+            <source [src]="pokemonInfo.cries.latest" type="audio/ogg" />
             Your browser does not support the audio element.
           </audio>
 
@@ -67,111 +69,107 @@
 
           <!-- AUDIO BUTTON -->
           <button
-          pButton
-          label="Escuchar"
-          class="p-1 pr-2"
-          icon="pi pi-play text-md"
-          [outlined]="true"
-          [raised]="true"
-          (click)="cries.play()"
-          >
-          </button>
+            pButton
+            label="Escuchar"
+            class="p-1 pr-2"
+            icon="pi pi-play text-md"
+            [outlined]="true"
+            [raised]="true"
+            (click)="cry()"
+          ></button>
         </div>
-
       </div>
-
     </div>
 
-
     <!-- RIGHT SIDE -->
-    <div class="w-15rem sm:w-20rem md:w-21rem lg:w-25rem flex flex-column justify-content-between">
-
-
+    <div
+      class="w-15rem sm:w-20rem md:w-21rem lg:w-25rem flex flex-column justify-content-between"
+    >
       <!-- HEIGHT AND WEIGHT -->
       <div class="flex justify-content-evenly flex-wrap mt-3 mb-2">
         <!-- HEIGHT -->
-        <div class="flex align-items-center justify-content-start gap-2 mb-3 text-xl">
+        <div
+          class="flex align-items-center justify-content-start gap-2 mb-3 text-xl"
+        >
           <span>Estatura: </span>
           <!-- HEIGHT IS GIVEN IN DECIMETERS (1decimeter = 10 centimeters) -->
-          <span class=" text-primary "> {{ pokemonInfo.height * 10 | number }}cm </span>
+          <span class="text-primary">
+            {{ pokemonInfo.height * 10 | number }}cm
+          </span>
         </div>
 
         <!-- WEIGHT -->
-        <div class="flex align-items-center justify-content-start gap-2 mb-3 text-xl">
+        <div
+          class="flex align-items-center justify-content-start gap-2 mb-3 text-xl"
+        >
           <span>Peso: </span>
           <!-- WEIGHT IS GIVEN IN HECTOGRAMS  (1hectogram = 100 grams) -->
-          <span class=" text-primary "> {{ pokemonInfo.weight * 100 | number }}g </span>
+          <span class="text-primary">
+            {{ pokemonInfo.weight * 100 | number }}g
+          </span>
         </div>
       </div>
 
       <!-- ABILITIES -->
-      <div class="flex flex-column align-items-center justify-content-start mb-3 w-full">
-
+      <div
+        class="flex flex-column align-items-center justify-content-start mb-3 w-full"
+      >
         <div>
-
-          <div class="text-yellow-400 text-xl font-bold ml-3">
-            Habilidades:
-          </div>
+          <div class="text-yellow-400 text-xl font-bold ml-3">Habilidades:</div>
 
           <div class="border-round-lg surface-50 px-2 h-5rem overflow-y-auto">
-
             <p-table
-            [value]="pokemonInfo.abilities"
-            [tableStyle]="{ 'min-width': '20rem' }"
-            styleClass="p-datatable-sm p-datatable-striped"
-            [scrollable]="true"
+              [value]="pokemonInfo.abilities"
+              [tableStyle]="{ 'min-width': '20rem' }"
+              styleClass="p-datatable-sm p-datatable-striped"
+              [scrollable]="true"
             >
               <ng-template pTemplate="body" let-abilities>
                 <tr>
-                  <td>{{ abilities.ability.name }}</td>
+                  <td>
+                    <li>{{ abilities.ability.name }}</li>
+                  </td>
                 </tr>
               </ng-template>
             </p-table>
           </div>
-
         </div>
-
       </div>
 
-
       <!-- MOVES -->
-      <div class="flex flex-column align-items-center justify-content-start mb-3 w-full">
-
+      <div
+        class="flex flex-column align-items-center justify-content-start mb-3 w-full"
+      >
         <div>
-
-          <div class="text-cyan-400 text-xl font-bold ml-3">
-            Movimientos:
-          </div>
+          <div class="text-cyan-400 text-xl font-bold ml-3">Movimientos:</div>
 
           <div class="border-round-lg surface-50 px-2 h-9rem overflow-y-auto">
-
             <p-table
-            [value]="pokemonInfo.moves"
-            [tableStyle]="{ 'min-width': '20rem' }"
-            styleClass="p-datatable-sm p-datatable-striped"
-            [scrollable]="true"
+              [value]="pokemonInfo.moves"
+              [tableStyle]="{ 'min-width': '20rem' }"
+              styleClass="p-datatable-sm p-datatable-striped"
+              [scrollable]="true"
             >
               <ng-template pTemplate="body" let-moves>
                 <tr>
-                  <td>{{ moves.move.name }}</td>
+                  <td>
+                    <li>{{ moves.move.name }}</li>
+                  </td>
                 </tr>
               </ng-template>
             </p-table>
           </div>
-
-
         </div>
-
       </div>
 
       <div class="flex justify-content-end gap-2">
-
-        <p-button label="Cerrar" severity="secondary" (click)="setVisibleFalse()" />
+        <p-button
+          label="Cerrar"
+          severity="secondary"
+          (click)="setVisibleFalse()"
+        />
         <!-- <p-button label="Save" (click)="setVisibleFalse()" /> -->
       </div>
-
     </div>
-
   </div>
-
 </p-dialog>

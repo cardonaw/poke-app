@@ -2,6 +2,7 @@
 /* Responsive-shapes by @cardonaw for a better-looking homepage */
 
 .background-shapes-container {
+  overflow: hidden;
   position: absolute;
   z-index: -1;
   height: 100vh;

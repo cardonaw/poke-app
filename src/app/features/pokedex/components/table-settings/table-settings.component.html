@@ -1,1 +1,12 @@
-<h2>Settings Works!</h2>
+<div class="flex flex-row justify-content-end align-items-center gap-4 pr-6">
+  <h3>Categoría:</h3>
+
+  <p-dropdown
+    [options]="typesArray"
+    [(ngModel)]="selectedType"
+    optionLabel="name"
+    [showClear]="true"
+    placeholder="Todas"
+    (onChange)="onChange($event)"
+  />
+</div>

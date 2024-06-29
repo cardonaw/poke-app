@@ -3,7 +3,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { SkeletonModule } from 'primeng/skeleton';
 import { DialogModule } from 'primeng/dialog';
-
+import { DropdownModule } from 'primeng/dropdown';
 
 
 
@@ -12,8 +12,8 @@ import { DialogModule } from 'primeng/dialog';
     ButtonModule,
     TableModule,
     SkeletonModule,
-    DialogModule
-
+    DialogModule,
+    DropdownModule
   ]
 })
-export class PrimeNgModule { }
+export class CoreModule { }
