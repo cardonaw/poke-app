@@ -8,20 +8,16 @@ import { TableSettingsComponent } from './components/table-settings/table-settin
 import { ModalComponent } from './components/modal/modal.component';
 import { FormsModule } from '@angular/forms';
 import { CoreModule } from '../../core/core.module';
-
+import { ByTypeTableComponent } from './components/by-type-table/by-type-table.component';
 
 @NgModule({
   declarations: [
     PokedexPageComponent,
     PokemonsTableComponent,
+    ByTypeTableComponent,
     TableSettingsComponent,
-    ModalComponent
+    ModalComponent,
   ],
-  imports: [
-    CommonModule,
-    CoreModule,
-    FormsModule,
-    PokedexRoutingModule,
-  ]
+  imports: [CommonModule, CoreModule, FormsModule, PokedexRoutingModule],
 })
-export class PokedexModule { }
+export class PokedexModule {}

@@ -1,17 +1,22 @@
-import { Component, EventEmitter, Output, type OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  Output,
+  type OnInit,
+} from '@angular/core';
 import { TypeService } from '../../../../services/type.service';
-import { PokemonsTypesList, TypesListResult } from '../../../../core/interfaces/pokemons-types-list.interface';
 import { DropdownChangeEvent } from 'primeng/dropdown';
+import { Subject, takeUntil } from 'rxjs';
+import { TypesListResult } from '../../../../core/interfaces/type.interface';
 
 @Component({
   selector: 'pokedex-table-settings',
   templateUrl: './table-settings.component.html',
   styles: ``,
 })
-export class TableSettingsComponent implements OnInit {
-
-  public selectedType: { name: string, url: string } | undefined;
-
+export class TableSettingsComponent implements OnInit, OnDestroy {
+  public selectedType: TypesListResult | undefined;
 
   public offset: number = 0;
   public limit: number = 100;
@@ -19,37 +24,36 @@ export class TableSettingsComponent implements OnInit {
   public typesArray: TypesListResult[] = [];
 
   @Output()
-  public onTypeChange = new EventEmitter< { name: string, url: string } >();
+  public onTypeChange = new EventEmitter<string>();
 
+  private destroy$ = new Subject<boolean>();
 
-  constructor(private typeService: TypeService) { }
-
+  constructor(private typeService: TypeService) {}
 
   ngOnInit(): void {
-
-    this.getTypesList( this.offset, this.limit );
-
+    this.getTypesList(this.offset, this.limit);
   }
 
-  getTypesList( offset:number, limit:number ): void {
-    this.typeService.getTypesList(offset, limit)
-    .subscribe( resp => {
-
-      this.typesArray = resp.results;
-
-    } )
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
-  onChange( event: DropdownChangeEvent ): void {
-
-    this.onTypeChange.emit( this.selectedType )
-
-    console.log('event', event);
-
-    console.log('Selected', this.selectedType);
-
+  getTypesList(offset: number, limit: number): void {
+    this.typeService
+      .getTypesList(offset, limit)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((resp) => {
+        this.typesArray = resp.results;
+      });
   }
 
+  onChange(): void {
+    this.onTypeChange.emit(this.selectedType ? this.selectedType.name : 'all');
 
-
+    console.log(
+      'Selected: ',
+      this.selectedType ? this.selectedType.name : 'all'
+    );
+  }
 }

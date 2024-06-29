@@ -30,13 +30,11 @@
     [paginatorPosition]="paginatorPosition"
     [pageLinks]="paginatorLinksControl()"
     [rows]="rows"
-    [first]="offset"
     [showCurrentPageReport]="true"
-    [tableStyle]="{ 'min-width': !smallViewWidth() ? '50rem' : '20rem' }"
     currentPageReportTemplate="Mostrando Pokemons del {first} al {last} de {totalRecords}"
+    [tableStyle]="{ 'min-width': !smallViewWidth() ? '50rem' : '20rem' }"
     (onPage)="pageChange($event)"
     [rowsPerPageOptions]="[5, 10, 100]"
-    [lazy]="true"
     styleClass="p-datatable-striped"
   >
     <ng-template pTemplate="header">

@@ -1,5 +1,7 @@
-<div class="flex flex-row justify-content-end align-items-center gap-4 pr-6">
-  <h3>Categoría:</h3>
+<div
+  class="flex flex-row justify-content-end align-items-center flex-wrap pr-6"
+>
+  <h3 class="mr-2">Categoría:</h3>
 
   <p-dropdown
     [options]="typesArray"
@@ -7,6 +9,6 @@
     optionLabel="name"
     [showClear]="true"
     placeholder="Todas"
-    (onChange)="onChange($event)"
+    (onChange)="onChange()"
   />
 </div>

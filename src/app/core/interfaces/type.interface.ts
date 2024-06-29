@@ -1,28 +1,40 @@
+export interface TypesList {
+  count: number;
+  next: string;
+  previous: string;
+  results: TypesListResult[];
+}
+
+export interface TypesListResult {
+  name: string;
+  url: string;
+}
+
 export interface PokeType {
-  damage_relations:      DamageRelations;
-  game_indices:          GameIndex[];
-  generation:            Generation;
-  id:                    number;
-  move_damage_class:     Generation;
-  moves:                 Generation[];
-  name:                  string;
-  names:                 Name[];
+  damage_relations: DamageRelations;
+  game_indices: GameIndex[];
+  generation: Generation;
+  id: number;
+  move_damage_class: Generation;
+  moves: Generation[];
+  name: string;
+  names: Name[];
   past_damage_relations: any[];
-  pokemon:               Pokemon[];
+  pokemon: PokemonByType[];
 }
 
 export interface DamageRelations {
   double_damage_from: Generation[];
-  double_damage_to:   Generation[];
-  half_damage_from:   Generation[];
-  half_damage_to:     Generation[];
-  no_damage_from:     Generation[];
-  no_damage_to:       Generation[];
+  double_damage_to: Generation[];
+  half_damage_from: Generation[];
+  half_damage_to: Generation[];
+  no_damage_from: Generation[];
+  no_damage_to: Generation[];
 }
 
 export interface Generation {
   name: string;
-  url:  string;
+  url: string;
 }
 
 export interface GameIndex {
@@ -32,10 +44,10 @@ export interface GameIndex {
 
 export interface Name {
   language: Generation;
-  name:     string;
+  name: string;
 }
 
-export interface Pokemon {
+export interface PokemonByType {
   pokemon: Generation;
-  slot:    number;
+  slot: number;
 }

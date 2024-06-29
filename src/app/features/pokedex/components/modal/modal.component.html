@@ -9,14 +9,14 @@
 >
   <!-- HEADER -->
   <ng-template pTemplate="header">
-    <div class="flex align-items-center justify-content-center gap-2">
+    <div class="flex align-items-center justify-content-center flex-wrap gap-2">
       <!-- NAME -->
-      <div class="text-3xl md:text-5xl font-bold mr-5">
+      <div class="text-3xl md:text-5xl font-bold">
         {{ pokemonInfo.name | titlecase }}
       </div>
 
       <!-- CATEGORIES -->
-      <div class="flex align-items-end flex-grow-1">
+      <div class="flex align-items-end">
         <div
           *ngFor="let type of pokemonInfo.types"
           class="text-md md:text-xl mx-2 mt-2 px-2 py-1 surface-100 border-round-xl"

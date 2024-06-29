@@ -9,11 +9,11 @@ import {
 import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
 
 @Component({
-  selector: 'pokedex-pokemons-table',
-  templateUrl: './pokemons-table.component.html',
-  styleUrl: './pokemons-table.component.css',
+  selector: 'pokedex-by-type-table',
+  templateUrl: './by-type-table.component.html',
+  styles: '',
 })
-export class PokemonsTableComponent implements OnInit {
+export class ByTypeTableComponent implements OnInit {
   public offset: number = 0;
   public rows: number = 5;
   public flag: boolean = false;
@@ -33,14 +33,9 @@ export class PokemonsTableComponent implements OnInit {
   public pokemonsCount: number = 0;
 
   @Output()
-  public onPageChange = new EventEmitter<{ first: number; rows: number }>();
-
-  @Output()
   public showDialog = new EventEmitter<number>();
 
-  ngOnInit(): void {
-    this.onPageChange.emit({ first: this.offset, rows: this.rows });
-  }
+  ngOnInit(): void {}
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -49,11 +44,6 @@ export class PokemonsTableComponent implements OnInit {
 
   pageChange(event: { first: number; rows: number }) {
     this.paginatorPositionControl(event.rows);
-
-    this.offset = event.first;
-    this.rows = event.rows;
-
-    this.onPageChange.emit(event);
 
     // console.log('firstchange', event.rows);
     // console.log('rowchange', event.first);

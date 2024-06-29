@@ -1,26 +1,29 @@
-import { CommonModule } from '@angular/common';
-import { Component, type OnInit } from '@angular/core';
-import { PokemonService } from '../../services/pokedex.service';
-import { Pokemon } from '../../core/interfaces/pokemon.interface';
-import { pipe } from 'rxjs';
-import { PokemonsList } from '../../core/interfaces/pokemons-list.interface';
+import { Component, OnDestroy, type OnInit } from '@angular/core';
+import { PokemonService } from '../../services/pokemon.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
 })
-export class HomePageComponent implements OnInit {
-  public randomPokemon: Pokemon[] = [];
-
+export class HomePageComponent implements OnInit, OnDestroy {
   public randomShapesUrls: string[] = [];
 
   public imgLoaded: boolean = false;
 
+  private destroy$ = new Subject<boolean>();
+
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
-    this.getRandomShapesUrls();
+    this.getRandomPokemonsUrls();
+    this.getRandomPokemonsUrls();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
   onLoadImg() {
@@ -35,24 +38,15 @@ export class HomePageComponent implements OnInit {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  getRandomShapesUrls() {
-    this.pokemonService.getPokemonsList(0, 100000).subscribe((listResp) => {
-      this.getRandomPokemon(listResp);
-
-      this.getRandomPokemon(listResp);
-    });
-  }
-
-  getRandomPokemon(pokemonsList: PokemonsList) {
-    const pokemonSelected: number = this.getRandomNum(pokemonsList.count);
+  getRandomPokemonsUrls() {
+    const randomNum = this.getRandomNum(1302 - 1);
 
     this.pokemonService
-      .getPokemonById(pokemonsList.results[pokemonSelected].name)
-      .subscribe((pokemonResp) => {
-        this.randomPokemon.push(pokemonResp);
-
+      .getPokemons(randomNum, 1)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((pokeArray) => {
         this.randomShapesUrls.push(
-          pokemonResp.sprites.other['official-artwork'].front_default
+          pokeArray[0].sprites.other['official-artwork'].front_default
         );
       });
   }
