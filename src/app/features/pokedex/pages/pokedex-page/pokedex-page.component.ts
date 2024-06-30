@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PokemonService } from '../../../../services/pokemon.service';
 import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, catchError, takeUntil } from 'rxjs';
 import { TypeService } from '../../../../services/type.service';
 
 @Component({
@@ -107,14 +107,12 @@ export class PokedexPageComponent implements OnInit, OnDestroy {
 
   public getPokemonsByType(type: string): void {
     this.isLoading = true;
-
     this.typeService
       .getPokemonsByType(type)
       .pipe(takeUntil(this.destroy$))
       .subscribe((resp) => {
         this.pokemonsCount = resp.length;
         this.pokemonsArray = resp;
-
         this.isLoading = false;
       });
   }

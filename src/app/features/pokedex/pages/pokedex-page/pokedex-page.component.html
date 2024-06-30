@@ -15,6 +15,14 @@
   <div
     class="w-12 sm:w-11 xl:w-9 sm:border-round-xl surface-50 xl:px-6 pt-3 pb-5"
   >
+    <!-- Show when Pokemons Count = 0; -->
+    <!-- <div
+      class="flex justify-content-center align-items-center pt-3 px-3 text-xl text-center gap-3 flex-wrap"
+    >
+      <i class="pi pi-times text-2xl"></i>
+      No se encontraron pokemons en esta categoría
+    </div> -->
+
     <pokedex-pokemons-table
       *ngIf="!switchTable"
       [isLoading]="isLoading"

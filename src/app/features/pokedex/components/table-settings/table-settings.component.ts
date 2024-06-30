@@ -6,7 +6,6 @@ import {
   type OnInit,
 } from '@angular/core';
 import { TypeService } from '../../../../services/type.service';
-import { DropdownChangeEvent } from 'primeng/dropdown';
 import { Subject, takeUntil } from 'rxjs';
 import { TypesListResult } from '../../../../core/interfaces/type.interface';
 
@@ -44,7 +43,12 @@ export class TableSettingsComponent implements OnInit, OnDestroy {
       .getTypesList(offset, limit)
       .pipe(takeUntil(this.destroy$))
       .subscribe((resp) => {
-        this.typesArray = resp.results;
+        const noPokemonsTypes: string[] = [];
+
+        this.typesArray = resp.results.filter((type) => {
+          return !['shadow', 'unknown', 'stellar'].includes(type.name);
+        });
+        console.log(this.typesArray);
       });
   }
 

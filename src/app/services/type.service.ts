@@ -2,7 +2,6 @@ import {
   PokeType,
   PokemonByType,
   TypesList,
-  TypesListResult,
 } from './../core/interfaces/type.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -38,7 +37,6 @@ export class TypeService {
         );
       }),
       mergeMap((calls) => forkJoin([...calls]))
-      // tap ( pokemon => console.log('pokemonbyID: ', pokemon) )
     );
   }
 }
