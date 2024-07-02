@@ -1,15 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { PokemonService } from '../../../../services/pokemon.service';
 import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
 import { Subject, catchError, takeUntil } from 'rxjs';
 import { TypeService } from '../../../../services/type.service';
 
 @Component({
-  selector: 'pokedex-pokedex-page',
-  templateUrl: './pokedex-page.component.html',
-  styleUrl: './pokedex-page.component.css',
+  selector: 'pokedex-pokedex',
+  templateUrl: './pokedex.component.html',
+  styles: '',
 })
-export class PokedexPageComponent implements OnInit, OnDestroy {
+export class PokedexComponent implements OnInit, OnDestroy {
   public offset: number = 0;
   public limit: number = 5;
 
@@ -25,6 +25,9 @@ export class PokedexPageComponent implements OnInit, OnDestroy {
   public visibleModalAnimDelay: boolean = false;
 
   public switchTable: boolean = false;
+
+  @Input()
+  public gameMode: boolean = false;
 
   // //Antes del constructor
   // const destroy$ = new Subject<boolean>()

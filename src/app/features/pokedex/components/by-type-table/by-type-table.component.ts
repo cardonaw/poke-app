@@ -21,6 +21,9 @@ export class ByTypeTableComponent implements OnInit {
   public windowSize: number = window.innerWidth;
 
   @Input()
+  public gameMode: boolean = false;
+
+  @Input()
   public isLoading: boolean = false;
 
   @Input()
@@ -56,11 +59,11 @@ export class ByTypeTableComponent implements OnInit {
   }
 
   paginatorLinksControl(): number {
-    return this.windowSize < 780 ? 1 : 5;
+    return this.windowSize < 780 || this.gameMode ? 1 : 5;
   }
 
   smallViewWidth(): boolean {
-    return this.windowSize < 655;
+    return this.windowSize < 655 || this.gameMode;
   }
 
   onClickInfo(id: number) {

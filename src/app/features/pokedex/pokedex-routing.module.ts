@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PokedexPageComponent } from './pages/pokedex-page/pokedex-page.component';
-import { ModalComponent } from './components/modal/modal.component';
+import { PokedexPageComponent } from './pages/pokedex-page/pokedex-page/pokedex-page.component';
+import { PokedexComponent } from './components/pokedex/pokedex.component';
 
 const routes: Routes = [
   {
@@ -18,12 +18,12 @@ const routes: Routes = [
   // },
   {
     path: '**',
-    redirectTo: ''
-  }
+    redirectTo: '',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PokedexRoutingModule { }
+export class PokedexRoutingModule {}

@@ -1,0 +1,43 @@
+<div class="mb-3 py-1 sm:border-round-xl surface-50">
+  <pokedex-table-settings (onTypeChange)="onTypeChange($event)">
+  </pokedex-table-settings>
+</div>
+
+<!-- Show when Pokemons Count = 0; -->
+<!-- <div
+      class="flex justify-content-center align-items-center pt-3 px-3 text-xl text-center gap-3 flex-wrap"
+    >
+      <i class="pi pi-times text-2xl"></i>
+      No se encontraron pokemons en esta categoría
+    </div> -->
+<div class="py-3 sm:border-round-xl surface-50">
+  <pokedex-pokemons-table
+    *ngIf="!switchTable"
+    [gameMode]="gameMode"
+    [isLoading]="isLoading"
+    [firstLoadingFlag]="firstLoadingFlag"
+    [pokemonsCount]="pokemonsCount"
+    [pokemonsArray]="pokemonsArray"
+    (onPageChange)="onTablePageChange($event)"
+    (showDialog)="showDialog($event)"
+  >
+  </pokedex-pokemons-table>
+
+  <pokedex-by-type-table
+    *ngIf="switchTable"
+    [gameMode]="gameMode"
+    [isLoading]="isLoading"
+    [firstLoadingFlag]="firstLoadingFlag"
+    [pokemonsCount]="pokemonsCount"
+    [pokemonsArray]="pokemonsArray"
+    (showDialog)="showDialog($event)"
+  >
+  </pokedex-by-type-table>
+</div>
+<pokedex-modal
+  *ngIf="visibleModalAnimDelay"
+  [visibleModal]="visibleModal"
+  [pokemonInfo]="pokemonInfo"
+  (hideModal)="hideDialog()"
+>
+</pokedex-modal>
