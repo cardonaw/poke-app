@@ -1,26 +1,44 @@
-<!-- <p>Lorem ipsum dolor sit amet...</p>
-  <ng-template pTemplate="footer">
-    <div class="flex gap-3 mt-1">
-      <p-button
-        label="Cancel"
-        severity="secondary"
-        class="w-full"
-        styleClass="w-full"
-      />
-      <p-button label="Save" class="w-full" styleClass="w-full" />
+<div class="flex flex-column justify-content-center align-items-center">
+  <p-card header="Pokemon Name" styleClass="w-18rem  md:w-25rem">
+    <div
+      class="flex justify-content-center align-items-center gap-4 bg-orange-600"
+    >
+      <!-- <img src="" alt="" /> -->
+      <p>img..</p>
+      <div
+        class="flex flex-column justify-content-center align-items-center gap-2"
+      >
+        <div
+          class="text-md md:text-lg px-2 py-1 surface-600 text-50 border-round-xl"
+        >
+          aaaa
+        </div>
+      </div>
     </div>
-  </ng-template> -->
 
-<p-button onclick="" class="my-2 mx-4">
-  <div
-    class="w-14rem h-6rem md:w-20rem md:h-12rem font-bold flex align-items-center justify-content-center flex-column text-3xl md:text-6xl"
-  >
-    <div class="label">Pokedex</div>
-  </div>
-</p-button>
+    <ng-template pTemplate="footer">
+      <div class="flex gap-3">
+        <p-button
+          label="Cambiar"
+          severity="secondary"
+          class="w-full"
+          styleClass="w-full"
+        />
+        <!-- <p-button label="Save" class="w-full" styleClass="w-full" /> -->
+      </div>
+    </ng-template>
+  </p-card>
+
+  <p-button (onClick)="showDialog()" styleClass="">
+    <div
+      class="w-15rem md:w-22rem h-5rem md:h-12rem md:text-3xl flex justify-content-center align-items-center"
+    >
+      <div class="label">Presiona para elegir pokemon</div>
+    </div>
+  </p-button>
+</div>
 
 <game-modal
-  *ngIf="visibleModalAnimDelay"
   [visibleModal]="visibleModal"
   (hideModal)="hideDialog()"
 ></game-modal>

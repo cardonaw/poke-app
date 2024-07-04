@@ -13,7 +13,7 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public showDialog(id: number) {
+  public showDialog() {
     this.visibleModal = true;
     this.visibleModalAnimDelay = true;
   }
