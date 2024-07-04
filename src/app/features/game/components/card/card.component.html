@@ -1,0 +1,26 @@
+<!-- <p>Lorem ipsum dolor sit amet...</p>
+  <ng-template pTemplate="footer">
+    <div class="flex gap-3 mt-1">
+      <p-button
+        label="Cancel"
+        severity="secondary"
+        class="w-full"
+        styleClass="w-full"
+      />
+      <p-button label="Save" class="w-full" styleClass="w-full" />
+    </div>
+  </ng-template> -->
+
+<p-button onclick="" class="my-2 mx-4">
+  <div
+    class="w-14rem h-6rem md:w-20rem md:h-12rem font-bold flex align-items-center justify-content-center flex-column text-3xl md:text-6xl"
+  >
+    <div class="label">Pokedex</div>
+  </div>
+</p-button>
+
+<game-modal
+  *ngIf="visibleModalAnimDelay"
+  [visibleModal]="visibleModal"
+  (hideModal)="hideDialog()"
+></game-modal>

@@ -1,1 +1,25 @@
-<p>game-page works!</p>,
+<div class="flex justify-content-center">
+  <div class="w-10 xl:w-8 mb-0">
+    <h1 class="text-6xl mb-0">Game-Mode</h1>
+    <p class="mb-4">Selecciona dos pokemons para el enfrentamiento</p>
+  </div>
+</div>
+<!--
+<div class="grid">
+  <div class="col-12 md:col-4">
+    <pokedex-pokedex [gameMode]="true"></pokedex-pokedex>
+  </div>
+  <div class="col-12 md:col-4">
+    <pokedex-pokedex [gameMode]="true"></pokedex-pokedex>
+  </div>
+  <div class="col-12 md:col-4"><game-card></game-card></div>
+</div> -->
+
+<div class="flex justify-content-center align-items-center flex-wrap gap-4">
+  <game-card></game-card>
+  <!-- <game-card></game-card> -->
+</div>
+
+<div class="flex justify-content-center mt-6">
+  <p-button label="Luchar"></p-button>
+</div>

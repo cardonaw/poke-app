@@ -9,7 +9,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { FormsModule } from '@angular/forms';
 import { CoreModule } from '../../core/core.module';
 import { ByTypeTableComponent } from './components/by-type-table/by-type-table.component';
-import { PokedexPageComponent } from './pages/pokedex-page/pokedex-page/pokedex-page.component';
+import { PokedexPageComponent } from './pages/pokedex-page/pokedex-page.component';
 
 @NgModule({
   declarations: [
@@ -21,5 +21,6 @@ import { PokedexPageComponent } from './pages/pokedex-page/pokedex-page/pokedex-
     ModalComponent,
   ],
   imports: [CommonModule, CoreModule, FormsModule, PokedexRoutingModule],
+  exports: [PokedexComponent],
 })
 export class PokedexModule {}
