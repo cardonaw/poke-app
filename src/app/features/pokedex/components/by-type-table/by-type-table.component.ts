@@ -19,6 +19,7 @@ export class ByTypeTableComponent implements OnInit {
   public flag: boolean = false;
   public paginatorPosition: 'top' | 'bottom' | 'both' = 'top';
   public windowSize: number = window.innerWidth;
+  public selectedPokemon!: Pokemon;
 
   @Input()
   public gameMode: boolean = false;
@@ -37,6 +38,9 @@ export class ByTypeTableComponent implements OnInit {
 
   @Output()
   public showDialog = new EventEmitter<number>();
+
+  @Output()
+  public onPokemonSelect = new EventEmitter<Pokemon>();
 
   ngOnInit(): void {}
 
@@ -59,15 +63,23 @@ export class ByTypeTableComponent implements OnInit {
   }
 
   paginatorLinksControl(): number {
-    return this.windowSize < 780 || this.gameMode ? 1 : 5;
+    return this.windowSize < 780 ? 1 : 5;
   }
 
   smallViewWidth(): boolean {
-    return this.windowSize < 655 || this.gameMode;
+    return this.windowSize < 655;
   }
 
   onClickInfo(id: number) {
     this.showDialog.emit(id);
+  }
+
+  selectionMode(): 'single' | null {
+    return this.gameMode ? 'single' : null;
+  }
+
+  rowSelect() {
+    this.onPokemonSelect.emit(this.selectedPokemon);
   }
 
   // next() {

@@ -20,6 +20,7 @@
     [pokemonsArray]="pokemonsArray"
     (onPageChange)="onTablePageChange($event)"
     (showDialog)="showDialog($event)"
+    (onPokemonSelect)="onPokemonSelect.emit($event)"
   >
   </pokedex-pokemons-table>
 
@@ -31,6 +32,7 @@
     [pokemonsCount]="pokemonsCount"
     [pokemonsArray]="pokemonsArray"
     (showDialog)="showDialog($event)"
+    (onPokemonSelect)="onPokemonSelect.emit($event)"
   >
   </pokedex-by-type-table>
 </div>

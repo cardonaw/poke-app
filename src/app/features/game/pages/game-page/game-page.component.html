@@ -1,25 +1,54 @@
-<div class="flex justify-content-center">
-  <div class="w-10 xl:w-8 mb-0">
-    <h1 class="text-6xl mb-0">Game-Mode</h1>
-    <p class="mb-4">Selecciona dos pokemons para el enfrentamiento</p>
+<div class="pb-4">
+  <div class="flex justify-content-center">
+    <div class="w-10 xl:w-7 mb-0">
+      <h1 class="text-4xl md:text-6xl mb-0">Game-Mode</h1>
+      <p class="mb-4">Selecciona dos pokemons para el enfrentamiento</p>
+    </div>
   </div>
-</div>
-<!--
-<div class="grid">
-  <div class="col-12 md:col-4">
-    <pokedex-pokedex [gameMode]="true"></pokedex-pokedex>
-  </div>
-  <div class="col-12 md:col-4">
-    <pokedex-pokedex [gameMode]="true"></pokedex-pokedex>
-  </div>
-  <div class="col-12 md:col-4"><game-card></game-card></div>
-</div> -->
+  <!--
+  <div class="grid">
+    <div class="col-12 md:col-4">
+      <pokedex-pokedex [gameMode]="true"></pokedex-pokedex>
+    </div>
+    <div class="col-12 md:col-4">
+      <pokedex-pokedex [gameMode]="true"></pokedex-pokedex>
+    </div>
+    <div class="col-12 md:col-4"><game-card></game-card></div>
+  </div> -->
 
-<div class="flex justify-content-center align-items-center flex-wrap gap-4">
-  <game-card></game-card>
-  <!-- <game-card></game-card> -->
-</div>
+  <div
+    class="md:mt-4 flex flex-column lg:flex-row justify-content-center align-items-center column-gap-8 row-gap-3"
+  >
+    <!-- FIRST POKEMON CARD -->
+    <div class="">
+      <h2 class="m-1 text-xl md:text-3xl">Pokemon 1</h2>
+      <game-card (pokemonEmitter)="onPokemonChange($event, 0)"></game-card>
+    </div>
 
-<div class="flex justify-content-center mt-6">
-  <p-button label="Luchar" severity="warning"></p-button>
+    <!-- FIGHT BUTTON -->
+    <div *ngIf="twoFighters()" class="flex justify-content-center my-4">
+      <p-button
+        label="Luchar"
+        (onClick)="onWinner()"
+        severity="warning"
+      ></p-button>
+    </div>
+
+    <!-- SECOND POKEMON CARD -->
+    <div class="">
+      <h2 class="m-1 text-xl md:text-3xl">Pokemon 2</h2>
+      <game-card (pokemonEmitter)="onPokemonChange($event, 1)"></game-card>
+    </div>
+  </div>
+
+  <game-wins-modal
+    *ngIf="winner"
+    [visibleModal]="visibleModal"
+    (hideModal)="hideDialog()"
+    [winner]="winner"
+  ></game-wins-modal>
+
+  <!-- <div *ngIf="twoFighters()" class="flex justify-content-center mt-4">
+    <p-button label="Luchar" severity="warning"></p-button>
+  </div> -->
 </div>

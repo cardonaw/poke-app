@@ -6,10 +6,16 @@ import { GamePageComponent } from './pages/game-page/game-page.component';
 import { PokedexModule } from '../pokedex/pokedex.module';
 import { CardComponent } from './components/card/card.component';
 import { CoreModule } from '../../core/core.module';
-import { ModalComponent } from './components/modal/modal.component';
+import { SelectModalComponent } from './components/select-modal/select-modal.component';
+import { WinsModalComponent } from './components/wins-modal/wins-modal.component';
 
 @NgModule({
-  declarations: [GamePageComponent, CardComponent, ModalComponent],
+  declarations: [
+    GamePageComponent,
+    CardComponent,
+    SelectModalComponent,
+    WinsModalComponent,
+  ],
   imports: [CommonModule, GameRoutingModule, CoreModule, PokedexModule],
 })
 export class GameModule {}

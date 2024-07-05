@@ -1,17 +1,20 @@
 <div class="flex flex-column justify-content-center align-items-center">
-  <p-card header="Pokemon Name" styleClass="w-18rem  md:w-25rem">
-    <div
-      class="flex justify-content-center align-items-center gap-4 bg-orange-600"
-    >
-      <!-- <img src="" alt="" /> -->
-      <p>img..</p>
+  <!-- CARD WHEN POKEMON IS SELECTED -->
+  <p-card
+    *ngIf="pokemon"
+    [header]="pokemon.name | titlecase"
+    styleClass="w-18rem  md:w-25rem"
+  >
+    <div class="flex flex-wrap justify-content-around align-items-center gap-4">
+      <img width="200px" [src]="setSprite()" [alt]="pokemon.name | titlecase" />
       <div
-        class="flex flex-column justify-content-center align-items-center gap-2"
+        class="flex flex-row md:flex-column justify-content-center align-items-center gap-4"
       >
         <div
-          class="text-md md:text-lg px-2 py-1 surface-600 text-50 border-round-xl"
+          *ngFor="let type of pokemon.types"
+          class="text-md md:text-lg px-2 py-1 surface-500 text-50 border-round-xl"
         >
-          aaaa
+          {{ type.type.name | titlecase }}
         </div>
       </div>
     </div>
@@ -21,6 +24,7 @@
         <p-button
           label="Cambiar"
           severity="secondary"
+          (onClick)="showDialog()"
           class="w-full"
           styleClass="w-full"
         />
@@ -29,7 +33,8 @@
     </ng-template>
   </p-card>
 
-  <p-button (onClick)="showDialog()" styleClass="">
+  <!-- BUTTON FOR POKEMON CHOICE -->
+  <p-button *ngIf="!pokemon" (onClick)="showDialog()" styleClass="">
     <div
       class="w-15rem md:w-22rem h-5rem md:h-12rem md:text-3xl flex justify-content-center align-items-center"
     >
@@ -38,7 +43,8 @@
   </p-button>
 </div>
 
-<game-modal
+<game-select-modal
   [visibleModal]="visibleModal"
   (hideModal)="hideDialog()"
-></game-modal>
+  (pokemonSelected)="changePokemon($event)"
+></game-select-modal>

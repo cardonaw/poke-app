@@ -37,6 +37,9 @@
     (onPage)="pageChange($event)"
     [rowsPerPageOptions]="[5, 10, 100]"
     [lazy]="true"
+    [selectionMode]="selectionMode()"
+    [(selection)]="selectedPokemon"
+    (onRowSelect)="rowSelect()"
     styleClass="p-datatable-striped"
   >
     <ng-template pTemplate="header">
@@ -76,7 +79,7 @@
     </ng-template>
 
     <ng-template pTemplate="body" let-pokemon>
-      <tr>
+      <tr [pSelectableRow]="pokemon">
         <!-- GIF or PNG -->
         <td class="text-center">
           <img

@@ -1,27 +1,19 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  type OnInit,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
 
 @Component({
-  selector: 'game-modal',
-  templateUrl: './modal.component.html',
+  selector: 'game-select-modal',
+  templateUrl: './select-modal.component.html',
 })
-export class ModalComponent implements OnInit {
+export class SelectModalComponent {
   @Input()
-  public visibleModal: boolean = true;
+  public visibleModal: boolean = false;
 
   @Output()
   public hideModal = new EventEmitter<void>();
 
   @Output()
   public pokemonSelected = new EventEmitter<Pokemon>();
-
-  ngOnInit(): void {}
 
   setVisibleFalse() {
     this.hideModal.emit();

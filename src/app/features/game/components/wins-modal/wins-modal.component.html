@@ -1,0 +1,61 @@
+<p-dialog
+  header="Ganador"
+  [modal]="true"
+  [visible]="visibleModal"
+  [style]="{ width: 'auto', margin: '0 2rem' }"
+  [closable]="false"
+  [focusOnShow]="false"
+  [draggable]="false"
+>
+  <ng-template pTemplate="header">
+    <div class="flex align-items-center justify-content-center gap-2">
+      <div class="flex flex-column w-full">
+        <span class="font-bold white-space-nowrap text-4xl mb-1">
+          {{ winner.name | titlecase }} gana!!!
+        </span>
+
+        <span class="p-text-secondary block">
+          {{ winner.name | titlecase }} ha ganado el enfrentamiento</span
+        >
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- <img class="w-15rem" [src]="setSprite()" [alt]="winner.name | titlecase" /> -->
+  <!-- <div
+    *ngFor="let type of winner.types"
+    class="text-md md:text-lg px-2 py-1 surface-500 text-50 border-round-xl"
+  >
+    {{ type.type.name | titlecase }}
+  </div> -->
+
+  <div
+    class="flex flex-wrap justify-content-around align-items-center gap-4 mx-3"
+  >
+    <img
+      class="w-15rem md:w-20rem"
+      [src]="setSprite()"
+      [alt]="winner.name | titlecase"
+    />
+    <div
+      class="flex flex-row md:flex-column justify-content-center align-items-center gap-4"
+    >
+      <div
+        *ngFor="let type of winner.types"
+        class="text-md md:text-lg px-2 py-1 surface-500 text-50 border-round-xl"
+      >
+        {{ type.type.name | titlecase }}
+      </div>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Aceptar"
+      [outlined]="true"
+      severity="primary"
+      (click)="setVisibleFalse()"
+      styleClass="mt-2"
+    />
+  </ng-template>
+</p-dialog>

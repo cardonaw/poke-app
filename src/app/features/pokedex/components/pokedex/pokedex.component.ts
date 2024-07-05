@@ -1,4 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { PokemonService } from '../../../../services/pokemon.service';
 import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
 import { Subject, catchError, takeUntil } from 'rxjs';
@@ -26,8 +33,12 @@ export class PokedexComponent implements OnInit, OnDestroy {
 
   public switchTable: boolean = false;
 
+  //OJOOOOOOOOOOOO
   @Input()
   public gameMode: boolean = false;
+
+  @Output()
+  public onPokemonSelect = new EventEmitter<Pokemon>();
 
   // //Antes del constructor
   // const destroy$ = new Subject<boolean>()
