@@ -1,15 +1,13 @@
-
 .label {
   z-index: 1;
 }
 
 img {
-
-  filter: contrast(0) sepia(80%) hue-rotate(200deg) saturate(2000%) brightness(80%);
+  filter: contrast(0) sepia(80%) hue-rotate(200deg) saturate(2000%)
+    brightness(80%);
   opacity: 0.5;
   width: 20rem;
   position: absolute;
   bottom: -5rem;
   left: 5rem;
-
 }

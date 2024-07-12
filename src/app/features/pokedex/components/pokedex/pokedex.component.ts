@@ -105,7 +105,7 @@ export class PokedexComponent implements OnInit, OnDestroy {
         this.isLoading = false;
       });
 
-    console.log('Arreglo de pokemons en pokedex: ', this.pokemonsArray);
+    // console.log('Arreglo de pokemons en pokedex: ', this.pokemonsArray);
   }
 
   public onTypeChange(type: string): void {

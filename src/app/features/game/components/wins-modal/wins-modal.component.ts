@@ -9,7 +9,7 @@ import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
 })
 export class WinsModalComponent {
   @Input()
-  public visibleModal: boolean = true;
+  public visibleModal: boolean = false;
 
   @Input()
   public winner!: Pokemon;

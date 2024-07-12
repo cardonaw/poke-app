@@ -48,7 +48,7 @@ export class TableSettingsComponent implements OnInit, OnDestroy {
         this.typesArray = resp.results.filter((type) => {
           return !['shadow', 'unknown', 'stellar'].includes(type.name);
         });
-        console.log(this.typesArray);
+        // console.log(this.typesArray);
       });
   }
 

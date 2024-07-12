@@ -21,7 +21,16 @@ export class TypeService {
 
     return this.http.get<TypesList>(`${this.apiUrl}/type?`, { params }).pipe(
       catchError((error) => {
-        throw 'Error while fetching typesList' + error;
+        throw 'Error while fetching typesList: ' + error;
+      })
+      // delay( 2000 )
+    );
+  }
+
+  public getTypeInfo(typeName: string): Observable<PokeType> {
+    return this.http.get<PokeType>(`${this.apiUrl}/type/${typeName}`).pipe(
+      catchError((error) => {
+        throw 'Error while fetching pokeType: ' + error;
       })
       // delay( 2000 )
     );
@@ -32,7 +41,7 @@ export class TypeService {
       map((type: PokeType) => {
         return type.pokemon.map(
           (pokemonByType: PokemonByType) =>
-            this.http.get<Pokemon>(pokemonByType.pokemon.url) // Esto podría ser remplazado por getPokemonById, pero lo dejo asi para "utilizar mas" la API
+            this.http.get<Pokemon>(pokemonByType.pokemon.url) // Esto podría ser remplazado por getPokemonById, pero lo dejo asi para "utilizar mas" los recursos de la API
           // this.http.get<Pokemon>(`${this.apiUrl}/${id}`)
         );
       }),
