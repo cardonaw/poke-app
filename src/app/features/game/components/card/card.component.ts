@@ -1,20 +1,23 @@
-import { Component, EventEmitter, Output, type OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
+import { TypeService } from '../../../../services/type.service';
 
 @Component({
   selector: 'game-card',
   templateUrl: './card.component.html',
   styles: ``,
 })
-export class CardComponent implements OnInit {
+export class CardComponent {
   public visibleModal: boolean = false;
   public visibleModalAnimDelay: boolean = false;
   public pokemon!: Pokemon;
 
+  public typeMap: any = this.typeService.i18nTypeMap;
+
   @Output()
   public pokemonEmitter = new EventEmitter<Pokemon>();
 
-  ngOnInit(): void {}
+  constructor(private typeService: TypeService) {}
 
   public showDialog() {
     this.visibleModal = true;

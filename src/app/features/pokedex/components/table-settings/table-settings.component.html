@@ -10,5 +10,16 @@
     [showClear]="true"
     placeholder="Todas"
     (onChange)="onChange()"
-  />
+  >
+    <ng-template pTemplate="selectedItem" let-selectedOption>
+      <div class="flex align-items-center gap-2">
+        <div>{{ selectedOption.name | i18nSelect : typeMap | titlecase }}</div>
+      </div>
+    </ng-template>
+    <ng-template let-type pTemplate="item">
+      <div class="flex align-items-center gap-2">
+        <div>{{ type.name | i18nSelect : typeMap | titlecase }}</div>
+      </div>
+    </ng-template>
+  </p-dropdown>
 </div>

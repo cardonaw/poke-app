@@ -118,7 +118,7 @@
               class="m-2 py-1 px-2 surface-200 text-center border-round-lg"
               *ngFor="let type of pokemon.types"
             >
-              {{ type.type.name | titlecase }}
+              {{ type.type.name | i18nSelect : typeMap | titlecase }}
             </span>
           </div>
         </td>

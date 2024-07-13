@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
 import { TableRowSelectEvent } from 'primeng/table';
+import { TypeService } from '../../../../services/type.service';
 
 @Component({
   selector: 'pokedex-pokemons-table',
@@ -21,6 +22,8 @@ export class PokemonsTableComponent implements OnInit {
   public paginatorPosition: 'top' | 'bottom' | 'both' = 'top';
   public windowSize: number = window.innerWidth;
   public selectedPokemon!: Pokemon;
+
+  public typeMap: any = this.typeService.i18nTypeMap;
 
   @Input()
   public gameMode: boolean = false;
@@ -45,6 +48,8 @@ export class PokemonsTableComponent implements OnInit {
 
   @Output()
   public onPokemonSelect = new EventEmitter<Pokemon>();
+
+  constructor(private typeService: TypeService) {}
 
   ngOnInit(): void {
     this.selectionMode();

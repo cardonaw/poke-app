@@ -12,6 +12,28 @@ import { Pokemon } from '../core/interfaces/pokemon.interface';
 export class TypeService {
   private apiUrl: string = 'https://pokeapi.co/api/v2';
 
+  public i18nTypeMap: any = {
+    normal: 'normal',
+    fighting: 'lucha',
+    flying: 'volador',
+    poison: 'veneno',
+    ground: 'tierra',
+    rock: 'roca',
+    bug: 'bicho',
+    ghost: 'fantasma',
+    steel: 'acero',
+    fire: 'fuego',
+    water: 'agua',
+    grass: 'planta',
+    electric: 'eléctrico',
+    psychic: 'psíquico',
+    ice: 'hielo',
+    dragon: 'dragon',
+    fairy: 'hada',
+    dark: 'siniestro',
+    stellar: 'estelar',
+  };
+
   constructor(private http: HttpClient) {
     console.log('servicio TYPE construido');
   }

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
+import { TypeService } from '../../../../services/type.service';
 
 @Component({
   selector: 'game-wins-modal',
@@ -8,6 +9,8 @@ import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
   styles: ``,
 })
 export class WinsModalComponent {
+  public typeMap: any = this.typeService.i18nTypeMap;
+
   @Input()
   public visibleModal: boolean = false;
 
@@ -16,6 +19,8 @@ export class WinsModalComponent {
 
   @Output()
   public hideModal = new EventEmitter<void>();
+
+  constructor(private typeService: TypeService) {}
 
   setVisibleFalse() {
     this.hideModal.emit();

@@ -8,6 +8,7 @@ import {
   type OnInit,
 } from '@angular/core';
 import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
+import { TypeService } from '../../../../services/type.service';
 
 @Component({
   selector: 'pokedex-modal',
@@ -20,6 +21,8 @@ export class ModalComponent implements OnInit {
 
   public imgLoaded: boolean = false;
 
+  public typeMap: any = this.typeService.i18nTypeMap;
+
   @Input()
   public visibleModal: boolean = false;
 
@@ -31,6 +34,8 @@ export class ModalComponent implements OnInit {
 
   @ViewChild('cries')
   public cries!: ElementRef<HTMLAudioElement>;
+
+  constructor(private typeService: TypeService) {}
 
   ngOnInit(): void {
     this.setSprite();

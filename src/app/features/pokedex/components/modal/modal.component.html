@@ -21,7 +21,7 @@
           *ngFor="let type of pokemonInfo.types"
           class="text-md md:text-xl mx-2 mt-2 px-2 py-1 surface-100 border-round-xl"
         >
-          {{ type.type.name | titlecase }}
+          {{ type.type.name | i18nSelect : typeMap | titlecase }}
         </div>
       </div>
     </div>

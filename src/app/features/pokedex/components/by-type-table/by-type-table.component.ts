@@ -7,6 +7,7 @@ import {
   type OnInit,
 } from '@angular/core';
 import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
+import { TypeService } from '../../../../services/type.service';
 
 @Component({
   selector: 'pokedex-by-type-table',
@@ -20,6 +21,8 @@ export class ByTypeTableComponent implements OnInit {
   public paginatorPosition: 'top' | 'bottom' | 'both' = 'top';
   public windowSize: number = window.innerWidth;
   public selectedPokemon!: Pokemon;
+
+  public typeMap: any = this.typeService.i18nTypeMap;
 
   @Input()
   public gameMode: boolean = false;
@@ -41,6 +44,8 @@ export class ByTypeTableComponent implements OnInit {
 
   @Output()
   public onPokemonSelect = new EventEmitter<Pokemon>();
+
+  constructor(private typeService: TypeService) {}
 
   ngOnInit(): void {}
 

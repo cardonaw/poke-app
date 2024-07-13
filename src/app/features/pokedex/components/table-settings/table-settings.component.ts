@@ -22,6 +22,8 @@ export class TableSettingsComponent implements OnInit, OnDestroy {
 
   public typesArray: TypesListResult[] = [];
 
+  public typeMap: any = this.typeService.i18nTypeMap;
+
   @Output()
   public onTypeChange = new EventEmitter<string>();
 

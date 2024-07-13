@@ -44,7 +44,7 @@
         *ngFor="let type of winner.types"
         class="text-md md:text-lg px-2 py-1 surface-500 text-50 border-round-xl"
       >
-        {{ type.type.name | titlecase }}
+        {{ type.type.name | i18nSelect : typeMap | titlecase }}
       </div>
     </div>
   </div>
