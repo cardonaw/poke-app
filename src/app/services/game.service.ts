@@ -1,13 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Pokemon } from '../core/interfaces/pokemon.interface';
+import { BattleStore } from '../core/interfaces/cache-store.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameService {
+  public cacheStore!: BattleStore;
+
   constructor() {
-    console.log('servicio GAME construido');
+    this.loadFromLocalStorage();
   }
 
-  public selectedPokemon!: Pokemon;
+  private loadFromLocalStorage() {
+    if (!localStorage.getItem('cacheStore')) return;
+    this.cacheStore = JSON.parse(localStorage.getItem('cacheStore')!);
+  }
+
+  public saveToLocalStorage() {
+    localStorage.setItem('cacheStore', JSON.stringify(this.cacheStore));
+  }
 }

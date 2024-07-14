@@ -33,7 +33,6 @@ export class PokedexComponent implements OnInit, OnDestroy {
 
   public switchTable: boolean = false;
 
-  //OJOOOOOOOOOOOO
   @Input()
   public gameMode: boolean = false;
 
@@ -110,7 +109,6 @@ export class PokedexComponent implements OnInit, OnDestroy {
 
   public onTypeChange(type: string): void {
     console.log('type set on pokedex: ', type);
-
     type === 'all' ? (this.switchTable = false) : this.tableSwap(type);
   }
 

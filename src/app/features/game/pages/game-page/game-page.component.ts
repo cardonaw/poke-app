@@ -1,9 +1,10 @@
-import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
 import { Component, type OnInit } from '@angular/core';
 import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
 import { TypeService } from '../../../../services/type.service';
 import { forkJoin, Observable, Subject, takeUntil } from 'rxjs';
 import { PokeType } from '../../../../core/interfaces/type.interface';
+import { GameService } from '../../../../services/game.service';
 
 @Component({
   selector: 'game-game-page',
@@ -19,9 +20,17 @@ export class GamePageComponent implements OnInit {
 
   private destroy$ = new Subject<boolean>();
 
-  constructor(private typeService: TypeService) {}
+  constructor(
+    private typeService: TypeService,
+    private gameService: GameService,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {}
+
+  public back(): void {
+    this.location.back();
+  }
 
   ngOnDestroy(): void {
     this.destroy$.next(true);
@@ -46,13 +55,16 @@ export class GamePageComponent implements OnInit {
 
   public onPokemonChange(pokemon: Pokemon, place: number) {
     this.pokemonsFighters[place] = pokemon;
+    this.gameService.cacheStore.fighters[place] = pokemon;
 
     console.log('Los luchadores son: ', this.pokemonsFighters);
   }
 
   public onWinner(i: number) {
     this.winner = this.pokemonsFighters[i];
+    this.gameService.cacheStore.winner = this.pokemonsFighters[i];
     this.showDialog();
+    this.gameService.saveToLocalStorage();
   }
 
   public onFight() {

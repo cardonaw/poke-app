@@ -1,6 +1,16 @@
 <div class="flex justify-content-center">
-  <div class="w-10 xl:w-8 mb-0">
-    <h1 class="text-6xl mb-0">Pokedex</h1>
+  <div class="w-12 sm:w-11 xl:w-9 xl:px-6 mb-0 flex">
+    <h1 class="text-6xl mb-0">
+      Pokedex
+      <p-button
+        (onClick)="back()"
+        [rounded]="true"
+        [text]="true"
+        [raised]="true"
+        icon="pi pi-arrow-left"
+        styleClass="ml-3"
+      ></p-button>
+    </h1>
   </div>
 </div>
 

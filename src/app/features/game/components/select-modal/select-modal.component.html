@@ -24,7 +24,7 @@
 
   <pokedex-pokedex
     [gameMode]="true"
-    (onPokemonSelect)="pokemonSelected.emit($event)"
+    (onPokemonSelect)="onPokemonSelect($event)"
   ></pokedex-pokedex>
 
   <ng-template pTemplate="footer">
@@ -39,6 +39,7 @@
       label="Aceptar"
       [outlined]="true"
       severity="secondary"
+      [disabled]="!isSelected"
       (click)="setVisibleFalse()"
       styleClass="mt-2"
     />

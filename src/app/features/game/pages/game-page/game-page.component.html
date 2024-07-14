@@ -1,7 +1,17 @@
 <div class="pb-4">
   <div class="flex justify-content-center">
     <div class="w-10 xl:w-7 mb-0">
-      <h1 class="text-4xl md:text-6xl mb-0">Game-Mode</h1>
+      <h1 class="text-4xl md:text-6xl mb-0">
+        Game-Mode
+        <p-button
+          (onClick)="back()"
+          [rounded]="true"
+          [text]="true"
+          [raised]="true"
+          icon="pi pi-arrow-left"
+          styleClass="ml-3"
+        ></p-button>
+      </h1>
       <p class="mb-4">Selecciona dos pokemons para el enfrentamiento</p>
     </div>
   </div>

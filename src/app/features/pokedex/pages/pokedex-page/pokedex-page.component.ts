@@ -1,4 +1,5 @@
 import { Component, type OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'pokedex-pokedex-page',
@@ -7,4 +8,9 @@ import { Component, type OnInit } from '@angular/core';
 })
 export class PokedexPageComponent implements OnInit {
   ngOnInit(): void {}
+
+  constructor(private location: Location) {}
+  public back(): void {
+    this.location.back();
+  }
 }

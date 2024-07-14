@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-import { TableModule } from 'primeng/table';
-import { SkeletonModule } from 'primeng/skeleton';
+import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
-import { CardModule } from 'primeng/card';
+import { SidebarModule } from 'primeng/sidebar';
+import { SkeletonModule } from 'primeng/skeleton';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   exports: [
     ButtonModule,
-    TableModule,
-    SkeletonModule,
+    CardModule,
     DialogModule,
     DropdownModule,
-    CardModule,
+    SidebarModule,
+    SkeletonModule,
+    TableModule,
   ],
 })
 export class CoreModule {}
