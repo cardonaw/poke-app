@@ -1,0 +1,56 @@
+<p-sidebar
+  [visible]="sidebarVisible"
+  (visibleChange)="visibilityChange($event)"
+  styleClass=" sm:w-30rem"
+>
+  <h2>Últimos 10 de enfrentamientos</h2>
+
+  <p-dataView #dv [value]="battles">
+    <ng-template pTemplate="list" let-battles>
+      <div class="grid grid-nogutter">
+        <div
+          class="col-12"
+          *ngFor="let battle of battles; let first = first"
+          class="col-12"
+        >
+          <div
+            class="flex flex-row align-items-center gap-0 flex-wrap justify-content-center"
+            [ngClass]="{ 'border-top-1 surface-border': !first }"
+          >
+            <div
+              *ngFor="let fighter of battle.fighters; let firstFighter = first"
+            >
+              <div class="flex align-items-center">
+                <div class="relative text-center">
+                  <h4 class="mb-0 mt-3 text-sm sm:text-base md:text-lg">
+                    {{ fighter.name | titlecase }}
+                  </h4>
+                  <img
+                    class="w-5rem"
+                    [src]="fighter.sprite"
+                    [alt]="fighter.name"
+                  />
+                </div>
+
+                <h4 *ngIf="firstFighter" class="mx-3 text-indigo-400">VS</h4>
+              </div>
+            </div>
+            <div class="flex flex-column sm:flex-row align-items-center">
+              <h2 class="m-0 sm:mx-3 text-indigo-400">=</h2>
+              <div class="relative text-center">
+                <h4 class="mb-0 mt-3 text-sm sm:text-base md:text-lg">
+                  {{ battle.fighters[battle.winner].name | titlecase }}
+                </h4>
+                <img
+                  class="w-5rem"
+                  [src]="battle.fighters[battle.winner].sprite"
+                  [alt]="battle.fighters[battle.winner].name"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataView>
+</p-sidebar>

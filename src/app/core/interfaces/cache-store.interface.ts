@@ -1,6 +1,9 @@
-import { Pokemon } from './pokemon.interface';
-
 export interface BattleStore {
-  fighters: Pokemon[];
-  winner: Pokemon;
+  fighters: HistoryPokemon[];
+  winner: number;
+}
+
+export interface HistoryPokemon {
+  name: string;
+  sprite: string;
 }

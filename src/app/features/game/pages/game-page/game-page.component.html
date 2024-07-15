@@ -1,18 +1,29 @@
+<game-history-bar [(sidebarVisible)]="visibleHistory" />
+
 <div class="pb-4">
   <div class="flex justify-content-center">
     <div class="w-10 xl:w-7 mb-0">
-      <h1 class="text-4xl md:text-6xl mb-0">
-        Game-Mode
+      <div class="flex justify-content-between align-items-end flex-wrap gap-3">
+        <h1 class="text-4xl md:text-6xl mb-0">
+          Game-Mode
+          <p-button
+            (onClick)="back()"
+            [text]="true"
+            [raised]="true"
+            icon="pi pi-arrow-left"
+            styleClass="ml-2  md:ml-3"
+          ></p-button>
+        </h1>
         <p-button
-          (onClick)="back()"
-          [rounded]="true"
+          (onClick)="showHistory()"
           [text]="true"
           [raised]="true"
-          icon="pi pi-arrow-left"
-          styleClass="ml-3"
+          label="Historial"
+          icon="pi pi-history"
+          styleClass="ml-0  md:ml-3 bg-indigo-900 "
         ></p-button>
-      </h1>
-      <p class="mb-4">Selecciona dos pokemons para el enfrentamiento</p>
+      </div>
+      <p class="mb-4 lg:mb-8">Selecciona dos pokemons para el enfrentamiento</p>
     </div>
   </div>
   <!--
@@ -31,7 +42,7 @@
   >
     <!-- FIRST POKEMON CARD -->
     <div class="">
-      <h2 class="m-1 text-xl md:text-3xl">Pokemon 1</h2>
+      <h2 class="m-1 text-xl md:text-3xl">Personaje 1</h2>
       <game-card (pokemonEmitter)="onPokemonChange($event, 0)"></game-card>
     </div>
 
@@ -46,7 +57,7 @@
 
     <!-- SECOND POKEMON CARD -->
     <div class="">
-      <h2 class="m-1 text-xl md:text-3xl">Pokemon 2</h2>
+      <h2 class="m-1 text-xl md:text-3xl">Personaje 2</h2>
       <game-card (pokemonEmitter)="onPokemonChange($event, 1)"></game-card>
     </div>
   </div>

@@ -18,6 +18,8 @@ export class GamePageComponent implements OnInit {
   public visibleModal: boolean = false;
   public visibleModalAnimDelay: boolean = false;
 
+  public visibleHistory: boolean = false;
+
   private destroy$ = new Subject<boolean>();
 
   constructor(
@@ -35,6 +37,10 @@ export class GamePageComponent implements OnInit {
   ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
+  }
+
+  public showHistory(): void {
+    this.visibleHistory = true;
   }
 
   public twoFighters(): boolean {
@@ -55,16 +61,13 @@ export class GamePageComponent implements OnInit {
 
   public onPokemonChange(pokemon: Pokemon, place: number) {
     this.pokemonsFighters[place] = pokemon;
-    this.gameService.cacheStore.fighters[place] = pokemon;
-
     console.log('Los luchadores son: ', this.pokemonsFighters);
   }
 
   public onWinner(i: number) {
     this.winner = this.pokemonsFighters[i];
-    this.gameService.cacheStore.winner = this.pokemonsFighters[i];
     this.showDialog();
-    this.gameService.saveToLocalStorage();
+    this.gameService.saveResults(i, this.pokemonsFighters);
   }
 
   public onFight() {

@@ -6,6 +6,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { SidebarModule } from 'primeng/sidebar';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TableModule } from 'primeng/table';
+import { DataViewModule } from 'primeng/dataview';
 
 @NgModule({
   exports: [
@@ -16,6 +17,7 @@ import { TableModule } from 'primeng/table';
     SidebarModule,
     SkeletonModule,
     TableModule,
+    DataViewModule,
   ],
 })
 export class CoreModule {}

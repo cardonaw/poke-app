@@ -7,6 +7,7 @@ import { Pokemon } from '../../../../core/interfaces/pokemon.interface';
 })
 export class SelectModalComponent {
   public isSelected: boolean = false;
+  public selectedPokemon!: Pokemon;
 
   @Input()
   public visibleModal: boolean = false;
@@ -18,12 +19,17 @@ export class SelectModalComponent {
   public pokemonSelected = new EventEmitter<Pokemon>();
 
   setVisibleFalse() {
+    this.hideModal.emit();
+  }
+
+  onDone() {
     if (!this.isSelected) return;
+    this.pokemonSelected.emit(this.selectedPokemon);
     this.hideModal.emit();
   }
 
   onPokemonSelect(pokemon: Pokemon) {
+    this.selectedPokemon = pokemon;
     this.isSelected = true;
-    this.pokemonSelected.emit(pokemon);
   }
 }
