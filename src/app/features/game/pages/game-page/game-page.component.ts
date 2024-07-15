@@ -9,7 +9,7 @@ import { GameService } from '../../../../services/game.service';
 @Component({
   selector: 'game-game-page',
   templateUrl: './game-page.component.html',
-  styleUrl: './game-page.component.css',
+  styles: '',
 })
 export class GamePageComponent implements OnInit {
   public pokemonsFighters: Pokemon[] = [];

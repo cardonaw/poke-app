@@ -6,7 +6,7 @@ import { ButtonModule } from 'primeng/button';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styles: '',
 })
 export class AppComponent {
   title = 'poke-app';
@@ -14,6 +14,6 @@ export class AppComponent {
   constructor(private primengConfig: PrimeNGConfig) {}
 
   ngOnInit() {
-      this.primengConfig.ripple = true;
+    this.primengConfig.ripple = true;
   }
 }
