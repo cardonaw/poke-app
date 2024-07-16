@@ -23,8 +23,10 @@
               *ngFor="let fighter of battle.fighters; let firstFighter = first"
             >
               <div class="flex align-items-center">
-                <div class="relative text-center">
-                  <h4 class="mb-0 mt-3 text-sm sm:text-base md:text-lg">
+                <div class="relative text-center w-5rem md:w-7rem">
+                  <h4
+                    class="mb-0 mt-3 text-sm sm:text-base md:text-lg white-space-nowrap overflow-hidden text-overflow-ellipsis"
+                  >
                     {{ fighter.name | titlecase }}
                   </h4>
                   <img
