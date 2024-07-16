@@ -61,7 +61,7 @@ export class GamePageComponent implements OnInit {
 
   public onPokemonChange(pokemon: Pokemon, place: number) {
     this.pokemonsFighters[place] = pokemon;
-    console.log('Los luchadores son: ', this.pokemonsFighters);
+    // console.log('Los luchadores son: ', this.pokemonsFighters);
   }
 
   public onWinner(i: number) {
@@ -84,12 +84,13 @@ export class GamePageComponent implements OnInit {
 
   public getWinner(pokemonTypesInfo: PokeType[]) {
     const prob: number = this.calcProb(pokemonTypesInfo);
-    console.log('La probabilidad de luchador #1 es de: ', prob);
+    // console.log('La probabilidad de luchador #1 es de: ', prob);
 
     const randomNum: number = Math.floor(Math.random() * 101);
     randomNum < prob ? this.onWinner(0) : this.onWinner(1);
 
-    // console.log('La probabilidad de luchador #1 es de: ', prob);
+    console.log('La probabilidad de ganar del luchador #1 es de: ', prob);
+    console.log('La probabilidad de ganar del luchador #2 es de: ', 100 - prob);
   }
 
   public calcProb(pokemonTypeInfo: PokeType[]) {
@@ -135,7 +136,7 @@ export class GamePageComponent implements OnInit {
       prob = 25;
     } else {
       prob = 50;
-      console.log('PROBABILIDAD POR DEFECTO');
+      // console.log('PROBABILIDAD POR DEFECTO');
     }
 
     if (double_damage_from.some((type) => type.name === secondPokemonType)) {
@@ -148,7 +149,7 @@ export class GamePageComponent implements OnInit {
       prob = (prob + 75) / 2;
     } else {
       prob = (prob + 50) / 2;
-      console.log('PROBABILIDAD POR DEFECTO');
+      // console.log('PROBABILIDAD POR DEFECTO');
     }
 
     return prob;

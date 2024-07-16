@@ -39,9 +39,6 @@ export class PokedexComponent implements OnInit, OnDestroy {
   @Output()
   public onPokemonSelect = new EventEmitter<Pokemon>();
 
-  // //Antes del constructor
-  // const destroy$ = new Subject<boolean>()
-
   private destroy$ = new Subject<boolean>();
 
   constructor(
@@ -49,15 +46,10 @@ export class PokedexComponent implements OnInit, OnDestroy {
     private typeService: TypeService
   ) {}
 
-  // //ngOnInit
-  // this.getAllPokemon().pipe(takeUntil(destroy$)).suscribe()
   ngOnInit(): void {
     this.getPokemons(this.offset, this.limit);
   }
 
-  // //ngOnDestroy
-  // destroy$.next(true)
-  // destroy$.unsubscribe()
   ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
@@ -87,7 +79,6 @@ export class PokedexComponent implements OnInit, OnDestroy {
   }
 
   public getPokemons(offset: number, limit: number) {
-    // this.pokemonsArray = [];
     this.isLoading = true;
 
     this.pokemonService
@@ -108,7 +99,7 @@ export class PokedexComponent implements OnInit, OnDestroy {
   }
 
   public onTypeChange(type: string): void {
-    console.log('type set on pokedex: ', type);
+    // console.log('type set on pokedex: ', type);
     type === 'all' ? (this.switchTable = false) : this.tableSwap(type);
   }
 

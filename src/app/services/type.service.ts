@@ -35,7 +35,7 @@ export class TypeService {
   };
 
   constructor(private http: HttpClient) {
-    console.log('servicio TYPE construido');
+    // console.log('servicio TYPE construido');
   }
 
   public getTypesList(offset: number, limit: number): Observable<TypesList> {

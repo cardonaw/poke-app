@@ -13,10 +13,10 @@ export class GameService {
 
   constructor() {
     this.loadFromLocalStorage();
-    console.log(
-      'Local CONSTRUCTOR: ',
-      JSON.parse(localStorage.getItem('battleCacheStore')!)
-    );
+    // console.log(
+    //   'Local CONSTRUCTOR: ',
+    //   JSON.parse(localStorage.getItem('battleCacheStore')!)
+    // );
   }
 
   private loadFromLocalStorage() {
@@ -50,9 +50,9 @@ export class GameService {
       'battleCacheStore',
       JSON.stringify(this.battleCacheStore)
     );
-    console.log(
-      'Local SAVETOLOCAL: ',
-      JSON.parse(localStorage.getItem('battleCacheStore')!)
-    );
+    // console.log(
+    //   'Local SAVETOLOCAL: ',
+    //   JSON.parse(localStorage.getItem('battleCacheStore')!)
+    // );
   }
 }

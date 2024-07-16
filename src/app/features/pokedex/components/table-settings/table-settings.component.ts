@@ -57,9 +57,9 @@ export class TableSettingsComponent implements OnInit, OnDestroy {
   onChange(): void {
     this.onTypeChange.emit(this.selectedType ? this.selectedType.name : 'all');
 
-    console.log(
-      'Selected: ',
-      this.selectedType ? this.selectedType.name : 'all'
-    );
+    // console.log(
+    //   'Selected: ',
+    //   this.selectedType ? this.selectedType.name : 'all'
+    // );
   }
 }

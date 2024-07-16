@@ -23,7 +23,7 @@ export class PokemonService {
   public pokemonsCount: number = 0;
 
   constructor(private http: HttpClient) {
-    console.log('servicio POKEMON construido');
+    // console.log('servicio POKEMON construido');
   }
 
   public getPokemons(offset: number, limit: number) {

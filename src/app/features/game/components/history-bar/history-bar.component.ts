@@ -24,12 +24,12 @@ export class HistoryBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.table(this.battles);
+    // console.table(this.battles);
   }
 
   public visibilityChange(value: boolean) {
     this.sidebarVisible = value;
     this.sidebarVisibleChange.emit(this.sidebarVisible);
-    console.table(this.battles);
+    // console.table(this.battles);
   }
 }
